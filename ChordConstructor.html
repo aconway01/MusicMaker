@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Chord Constructor</title>
+
+<link rel="stylesheet" type="text/css" href="music.css">
+
+<meta charset="UTF-8">
+
+<script>
+function MajorMinor() {
+    var major_minor = document.getElementById("majorMinor").value;
+    if (major_minor == "Minor") {
+        songKeyminor();
+    }
+    else if (major_minor == "Major") {
+        songKey();
+    }
+    else if (major_minor == "Diminished") {
+        songKeydim();
+    }
+}
+
+function songKey() {
+    var chrom_scale = ["C","C# or Db","D","D# or Eb","E","F","F# or Gb","G","G# or Ab","A","A# or Bb","B"];
+
+    var start_key = document.getElementById("startKey").value;
+    
+    var key_index = chrom_scale.indexOf(start_key);
+    
+    var major_scale_steps = [chrom_scale.indexOf(start_key), chrom_scale.indexOf(start_key) + 2, chrom_scale.indexOf(start_key)+ 4, chrom_scale.indexOf(start_key)+ 5, chrom_scale.indexOf(start_key) + 7, chrom_scale.indexOf(start_key) + 9, chrom_scale.indexOf(start_key) + 11, chrom_scale.indexOf(start_key) + 12];
+    
+    for (i = 0; i < 12; i++) {
+        chrom_scale.push(chrom_scale[i]);
+    }
+        
+        
+    var counter = 0;
+    var end_key_major = [];
+    
+    for (i = 0; i < 24; i++) {
+        if (counter - key_index == 0) {
+            end_key_major.push(chrom_scale[counter]);
+        }
+        else if ((major_scale_steps.indexOf(counter) > -1) && (end_key_major.indexOf(chrom_scale[counter]) < 0)) {
+            end_key_major.push(chrom_scale[counter]);
+        }
+        counter += 1;
+    }
+
+    var notes_in_chord = (end_key_major[0] + ", " + end_key_major[2] + ", "  + end_key_major[4]);
+    document.getElementById("notes").innerHTML = "The notes in this chord are: " + "<br>" + notes_in_chord;
+}
+
+function songKeyminor() {
+    var chrom_scale = ["C","C# or Db","D","D# or Eb","E","F","F# or Gb","G","G# or Ab","A","A# or Bb","B"];
+
+    var start_key = document.getElementById("startKey").value;
+    
+    var key_index = chrom_scale.indexOf(start_key);
+
+    var minor_scale_steps = [chrom_scale.indexOf(start_key), chrom_scale.indexOf(start_key)+ 2, chrom_scale.indexOf(start_key) + 3, chrom_scale.indexOf(start_key) + 5, chrom_scale.indexOf(start_key) + 7, chrom_scale.indexOf(start_key) + 8, chrom_scale.indexOf(start_key) + 10, chrom_scale.indexOf(start_key) + 12];
+    
+    for (i = 0; i < 12; i++) {
+        chrom_scale.push(chrom_scale[i]);
+    }
+    
+    counter = 0;
+    var end_key_minor = [];
+    
+    for (i = 0; i < 36; i++) {
+        if (counter - key_index == 0) {
+            end_key_minor.push(chrom_scale[counter]);
+        }
+        else if ((minor_scale_steps.indexOf(counter) > -1) && (end_key_minor.indexOf(chrom_scale[counter]) < 0)) {
+            end_key_minor.push(chrom_scale[counter]);
+        }
+        counter += 1;
+    }
+
+    var notes_in_chord = (end_key_minor[0] + ", " + end_key_minor[2] + ", " + end_key_minor[4]);
+    document.getElementById("notes").innerHTML = "The notes in this chord are: " + "<br>" + notes_in_chord;
+}
+
+function songKeydim() {
+    var chrom_scale = ["C","C# or Db","D","D# or Eb","E","F","F# or Gb","G","G# or Ab","A","A# or Bb","B"];
+
+    var start_key = document.getElementById("startKey").value;
+    
+    var key_index = chrom_scale.indexOf(start_key);
+
+    for (i = 0; i < 12; i++) {
+        chrom_scale.push(chrom_scale[i]);
+    }
+    
+
+    var notes_in_chord = (chrom_scale[key_index] + ", " + chrom_scale[key_index + 3] + ", "  + chrom_scale[key_index + 6]);
+    document.getElementById("notes").innerHTML = "The notes in this chord are: " + "<br>" + notes_in_chord;
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div class="contain">
+
+<h1>Music Maker</h1>
+
+<div id='cssmenu'>
+<ul>
+<li><a href="home.html"><span>Home</span></a></li>
+<li><a href="SongKey.html"><span>Song Keys</span></a></li>
+<li class="active"><a href="ChordConstructor.html"><span>Chords</span></a></li>
+<li class="last"><a href="metronome.html"><span>Metronome</span></a></li>
+</ul>
+
+<br>
+
+<p>Enter your chord (b's are flats, #'s are sharps):</p>
+
+<select id="startKey">
+  <option value="C">C</option>
+  <option value="C# or Db">C# or Db</option>
+  <option value="D">D</option>
+  <option value="D# or Eb">D# or Eb</option>
+  <option value="E">E</option>
+  <option value="F">F</option>
+  <option value="F# or Gb">F# or Gb</option>
+  <option value="G">G</option>
+  <option value="G# or Ab">G# or Ab</option>
+  <option value="A">A</option>
+  <option value="A# or Bb">A# or Bb</option>
+  <option value="B">B</option>
+</select>
+
+<select id="majorMinor">
+  <option value="Major">Major</option>
+  <option value="Minor">Minor</option>
+  <option value="Diminished">Diminished</option>
+</select>
+
+<input type="button" value="Try!" onclick="MajorMinor()">
+
+<p id="notes"></p>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

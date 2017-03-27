@@ -1,0 +1,80 @@
+
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Metronome</title>
+
+<link rel="stylesheet" type="text/css" href="music.css">
+
+<meta charset="UTF-8">
+
+<script>
+function metronome() {
+    var times = document.getElementById("times").value;
+
+    document.getElementById("start").style.display = "none";
+
+    var bpm = (60/times) * 1000;
+
+    var click = setInterval(function() {counter() },bpm);
+}
+
+var count = 0;
+
+function counter() {
+    if (count > 4) {
+        count = 1;
+    }
+    if (count%2 == 1) {
+        document.body.style.background = "#000";
+    }
+    else if (count%2 == 0) {
+        document.body.style.background = "#0000ff";
+    }
+    count += 1;
+    document.getElementById("snap").play();
+ 
+}
+  
+</script>
+
+</head>
+
+<body>
+
+<div class="contain">
+
+
+<h1>Music Maker</h1>
+
+<div id='cssmenu'>
+<ul>
+<li><a href="home.html"><span>Home</span></a></li>
+<li><a href="SongKey.html"><span>Song Keys</span></a></li>
+<li><a href="ChordConstructor.html"><span>Chords</span></a></li>
+<li class="active"><a href="metronome.html"><span>Metronome</span></a></li>
+</ul>
+
+<br>
+
+<p>Enter your beats per minute (bpm):</p>
+
+<input id="times" type="text" value="90">
+
+<input id="start" type="button" value="start" onclick="metronome()">
+
+<input id="stop" type="button" value="stop" onclick="location.reload();">
+
+<audio id="snap" src="snap.mp3" preload="auto"></audio>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
