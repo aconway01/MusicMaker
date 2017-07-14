@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 
 <html>
@@ -10,9 +8,11 @@
 
 <link rel="stylesheet" type="text/css" href="music.css">
 
-<meta charset="UTF-8">
+<meta charset="UTF-8">
 
 <script>
+var click;
+
 function metronome() {
     var times = document.getElementById("times").value;
 
@@ -20,7 +20,7 @@ function metronome() {
 
     var bpm = (60/times) * 1000;
 
-    var click = setInterval(function() {counter() },bpm);
+    click = setInterval(function() {counter() },bpm);
 }
 
 var count = 0;
@@ -37,9 +37,14 @@ function counter() {
     }
     count += 1;
     document.getElementById("snap").play();
- 
+
 }
-  
+
+function stopMetronome() {
+    clearInterval(click);
+    document.getElementById("start").style.display = "initial";
+}
+
 </script>
 
 </head>
@@ -47,7 +52,6 @@ function counter() {
 <body>
 
 <div class="contain">
-
 
 <h1>Music Maker</h1>
 
@@ -67,7 +71,7 @@ function counter() {
 
 <input id="start" type="button" value="start" onclick="metronome()">
 
-<input id="stop" type="button" value="stop" onclick="location.reload();">
+<input id="stop" type="button" value="stop" onclick="stopMetronome();">
 
 <audio id="snap" src="snap.mp3" preload="auto"></audio>
 
