@@ -10,41 +10,7 @@
 
 <meta charset="UTF-8">
 
-<script>
-var click;
-function metronome() {
-    var times = document.getElementById("times").value;
-
-    document.getElementById("start").style.display = "none";
-
-    var bpm = (60/times) * 1000;
-
-    click = setInterval(function() {counter() },bpm);
-}
-
-var count = 0;
-function counter() {
-    if (count > 4) {
-        count = 1;
-    }
-    if (count%2 == 1) {
-        document.body.style.background = "#000";
-    }
-    else if (count%2 == 0) {
-        document.body.style.background = "#0000ff";
-    }
-    count += 1;
-    document.getElementById("snap").play();
-
-}
-
-function stopMetronome() {
-    clearInterval(click);
-    document.getElementById("start").style.display = "initial";
-    document.body.style.background = "#0000ff";
-}
-
-</script>
+<script type="text/javascript" src="musicMaker.js"></script>
 
 </head>
 
