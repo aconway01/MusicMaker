@@ -8,109 +8,61 @@
 
 <link rel="stylesheet" type="text/css" href="music.css">
 
-<meta charset="UTF-8">
+<meta charset="UTF-8">
 
 <script>
-function MajorMinor() {
-    var major_minor = document.getElementById("majorMinor").value;
-    if (major_minor == "Minor") {
-        songKeyminor();
-    }
-    else if (major_minor == "Major") {
-        songKey();
-    }
-}
-
 function songKey() {
+
+    major_minor = document.getElementById("majorMinor").value;
+
     var chrom_scale = ["C","C# or Db","D","D# or Eb","E","F","F# or Gb","G","G# or Ab","A","A# or Bb","B"];
 
     var start_key = document.getElementById("startKey").value;
-    
+
     var key_index = chrom_scale.indexOf(start_key);
 
-    document.getElementById("myStart").innerHTML = "Your song key is " + start_key + " Major";
-    
-    var major_scale_steps = [chrom_scale.indexOf(start_key), chrom_scale.indexOf(start_key) + 2, chrom_scale.indexOf(start_key)+ 4, chrom_scale.indexOf(start_key)+ 5, chrom_scale.indexOf(start_key) + 7, chrom_scale.indexOf(start_key) + 9, chrom_scale.indexOf(start_key) + 11, chrom_scale.indexOf(start_key) + 12];
-    
-    for (i = 0; i < 12; i++) {
-        chrom_scale.push(chrom_scale[i]);
-    }
-        
-        
-    var counter = 0;
-    var end_key_major = [];
-    
-    for (i = 0; i < 24; i++) {
-        if (counter - key_index == 0) {
-            end_key_major.push(chrom_scale[counter]);
+    document.getElementById("myStart").innerHTML = "Your song key is " + start_key + " " + major_minor;
+
+    var end_key = [];
+
+    var chords_in_key;
+
+    if (major_minor == "Major") {
+        var major_scale_steps = [key_index, key_index + 2, key_index + 4, key_index + 5, key_index + 7, key_index + 9, key_index + 11, key_index + 12];
+
+        for (i = 0; i < major_scale_steps.length - 1; i++) {
+            end_key.push(chrom_scale[major_scale_steps[i]%12]);
         }
-        else if ((major_scale_steps.indexOf(counter) > -1) && (end_key_major.indexOf(chrom_scale[counter]) < 0)) {
-            end_key_major.push(chrom_scale[counter]);
-        }
-        counter += 1;
+
+        chords_in_key = (end_key[0] + " Major" + "<br>" + end_key[1] + " Minor" + "<br>" + end_key[2] + " Minor" + "<br>" + end_key[3] + " Major" + "<br>" + end_key[4] + " Major" + "<br>" + end_key[5] + " Minor" + "<br>" + end_key[6] + " Diminished");
+
     }
 
-    document.getElementById("text_before_scale").innerHTML = "The notes in the " + start_key + " Major scale are: ";
+    else if (major_minor == "Minor") {
+        var minor_scale_steps = [chrom_scale.indexOf(start_key), chrom_scale.indexOf(start_key)+ 2, chrom_scale.indexOf(start_key) + 3, chrom_scale.indexOf(start_key) + 5, chrom_scale.indexOf(start_key) + 7, chrom_scale.indexOf(start_key) + 8, chrom_scale.indexOf(start_key) + 10, chrom_scale.indexOf(start_key) + 12];
 
-    var major_scale = "";
-    for (i = 0; i < end_key_major.length; i++) {
-        if (i != end_key_major.length - 1) {
-            major_scale += end_key_major[i] + ", ";
+        for (i = 0; i < minor_scale_steps.length - 1; i++) {
+            end_key.push(chrom_scale[minor_scale_steps[i]%12]);
+        }
+
+        chords_in_key = (end_key[0] + " Minor" + "<br>" + end_key[1] + " Diminished" + "<br>" + end_key[2] + " Major" + "<br>" + end_key[3] + " Minor" + "<br>" + end_key[4] + " Minor" + "<br>" + end_key[5] + " Major" + "<br>" + end_key[6] + " Major");
+        document.getElementById("chords").innerHTML = "The chords in this key are: " + "<br>" + chords_in_key;
+    }
+
+    document.getElementById("text_before_scale").innerHTML = "The notes in the " + start_key + " " + major_minor + " scale are: ";
+
+    var scale = "";
+
+    for (i = 0; i < end_key.length; i++) {
+        if (i != end_key.length - 1) {
+            scale += end_key[i] + ", ";
         }
         else {
-            major_scale += end_key_major[i];
+            scale += end_key[i];
         }
     }
 
-    document.getElementById("Scale").innerHTML = major_scale;
-
-    var chords_in_key = (end_key_major[0] + " Major" + "<br>" + end_key_major[1] + " Minor" + "<br>" + end_key_major[2] + " Minor" + "<br>" + end_key_major[3] + " Major" + "<br>" + end_key_major[4] + " Major" + "<br>" + end_key_major[5] + " Minor" + "<br>" + end_key_major[6] + " Diminished");
-    document.getElementById("chords").innerHTML = "The chords in this key are: " + "<br>" + chords_in_key;
-}
-
-function songKeyminor() {
-    var chrom_scale = ["C","C# or Db","D","D# or Eb","E","F","F# or Gb","G","G# or Ab","A","A# or Bb","B"];
-
-    var start_key = document.getElementById("startKey").value;
-    
-    var key_index = chrom_scale.indexOf(start_key);
-
-    document.getElementById("myStart").innerHTML = "Your song key is " + start_key + " Minor";
-    
-    var minor_scale_steps = [chrom_scale.indexOf(start_key), chrom_scale.indexOf(start_key)+ 2, chrom_scale.indexOf(start_key) + 3, chrom_scale.indexOf(start_key) + 5, chrom_scale.indexOf(start_key) + 7, chrom_scale.indexOf(start_key) + 8, chrom_scale.indexOf(start_key) + 10, chrom_scale.indexOf(start_key) + 12];
-    
-    for (i = 0; i < 12; i++) {
-        chrom_scale.push(chrom_scale[i]);
-    }
-    
-    counter = 0;
-    var end_key_minor = [];
-    
-    for (i = 0; i < 36; i++) {
-        if (counter - key_index == 0) {
-            end_key_minor.push(chrom_scale[counter]);
-        }
-        else if ((minor_scale_steps.indexOf(counter) > -1) && (end_key_minor.indexOf(chrom_scale[counter]) < 0)) {
-            end_key_minor.push(chrom_scale[counter]);
-        }
-        counter += 1;
-    }
-
-    document.getElementById("text_before_scale").innerHTML = "The notes in the " + start_key + " Minor scale are: ";
-
-    var minor_scale = "";
-    for (i = 0; i < end_key_minor.length; i++) {
-        if (i != end_key_minor.length - 1) {
-            minor_scale += end_key_minor[i] + ", ";
-        }
-        else {
-            minor_scale += end_key_minor[i];
-        }
-    }
-
-    document.getElementById("Scale").innerHTML = minor_scale;
-
-    var chords_in_key = (end_key_minor[0] + " Minor" + "<br>" + end_key_minor[1] + " Diminished" + "<br>" + end_key_minor[2] + " Major" + "<br>" + end_key_minor[3] + " Minor" + "<br>" + end_key_minor[4] + " Minor" + "<br>" + end_key_minor[5] + " Major" + "<br>" + end_key_minor[6] + " Major");
+    document.getElementById("Scale").innerHTML = scale;
     document.getElementById("chords").innerHTML = "The chords in this key are: " + "<br>" + chords_in_key;
 }
 
@@ -156,7 +108,7 @@ function songKeyminor() {
   <option value="Minor">Minor</option>
 </select>
 
-<input type="button" value="Try!" onclick="MajorMinor()">
+<input type="button" value="Try!" onclick="songKey()">
 
 <p id="myStart"></p>
 <p id="text_before_scale"></p>
