@@ -73,14 +73,15 @@ function metronome() {
 
 var count = 0;
 function counter() {
+    var myDiv = getElementsByClassName("contain");
     if (count > 4) {
         count = 1;
     }
     if (count%2 == 1) {
-        document.body.style.background = "#000";
+        x.style.background = "#000";
     }
     else if (count%2 == 0) {
-        document.body.style.background = "#0000ff";
+        x.style.background = "#0000ff";
     }
     count += 1;
     document.getElementById("snap").play();
@@ -89,5 +90,5 @@ function counter() {
 function stopMetronome() {
     clearInterval(click);
     document.getElementById("start").style.display = "initial";
-    document.body.style.background = "#0000ff";
+    x.style.background = "#0000ff";
 }
