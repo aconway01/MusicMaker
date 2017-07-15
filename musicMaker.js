@@ -71,25 +71,24 @@ function metronome() {
     click = setInterval(function() {counter() },bpm);
 }
 
+
 var count = 0;
 function counter() {
-    var myDiv = document.getElementsByClassName("contain");
     if (count > 4) {
         count = 1;
     }
     if (count%2 == 1) {
-        myDiv[0].style.background = "#000";
+        document.getElementById("contain").style.background = "#000";
     }
     else if (count%2 == 0) {
-        myDiv[0].style.background = "#0000ff";
+        document.getElementById("contain").style.background = "#0000ff";
     }
     count += 1;
     document.getElementById("snap").play();
 }
 
 function stopMetronome() {
-    var myDiv = document.getElementsByClassName("contain");
     clearInterval(click);
     document.getElementById("start").style.display = "initial";
-    myDiv[0].style.background = "#0000ff";
+    document.getElementById("contain").style.background = "#0000ff";
 }
