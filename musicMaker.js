@@ -78,17 +78,18 @@ function counter() {
         count = 1;
     }
     if (count%2 == 1) {
-        x[0].style.background = "#000";
+        myDiv[0].style.background = "#000";
     }
     else if (count%2 == 0) {
-        x[0].style.background = "#0000ff";
+        myDiv[0].style.background = "#0000ff";
     }
     count += 1;
     document.getElementById("snap").play();
 }
 
 function stopMetronome() {
+    var myDiv = document.getElementsByClassName("contain");
     clearInterval(click);
     document.getElementById("start").style.display = "initial";
-    x[0].style.background = "#0000ff";
+    myDiv[0].style.background = "#0000ff";
 }
