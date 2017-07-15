@@ -74,8 +74,8 @@ function metronome() {
 
 var count = 0;
 function counter() {
-    if (count > 4) {
-        count = 1;
+    if (count > 3) {
+        count = 0;
     }
     if (count%2 == 1) {
         document.getElementById("contain").style.background = "#000";
