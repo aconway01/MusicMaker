@@ -2,7 +2,7 @@ body {background-color: #0000ff; color: #ffffff; font-family: 'Lato', sans-serif
 
 p {font-size: 14pt; }
 
-h1 (font-size: 18pt; }
+h1 {font-size: 18pt; }
 
 select {width: 170px; height: 50px; background-color: #ffffff; color: #0000ff;
 font-size: 14pt; }
