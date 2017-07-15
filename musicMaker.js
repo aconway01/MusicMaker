@@ -73,7 +73,7 @@ function metronome() {
 
 var count = 0;
 function counter() {
-    var myDiv = getElementsByClassName("contain");
+    var myDiv = document.getElementsByClassName("contain");
     if (count > 4) {
         count = 1;
     }
