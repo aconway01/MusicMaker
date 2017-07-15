@@ -5,10 +5,10 @@ p {font-size: 14pt; }
 h1 (font-size: 18pt; }
 
 select {width: 170px; height: 50px; background-color: #ffffff; color: #0000ff;
-font-size: 16pt; }
+font-size: 14pt; }
 
 input {width: 100px; height: 50px;
-font-size: 16pt; }
+font-size: 14pt; }
 
 div.contain {width: 685px; margin-left: auto; margin-right: auto; text-align: center; }
 
