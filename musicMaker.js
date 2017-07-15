@@ -78,10 +78,10 @@ function counter() {
         count = 1;
     }
     if (count%2 == 1) {
-        x.style.background = "#000";
+        x[0].style.background = "#000";
     }
     else if (count%2 == 0) {
-        x.style.background = "#0000ff";
+        x[0].style.background = "#0000ff";
     }
     count += 1;
     document.getElementById("snap").play();
@@ -90,5 +90,5 @@ function counter() {
 function stopMetronome() {
     clearInterval(click);
     document.getElementById("start").style.display = "initial";
-    x.style.background = "#0000ff";
+    x[0].style.background = "#0000ff";
 }
