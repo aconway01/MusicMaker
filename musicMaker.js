@@ -6,21 +6,25 @@ function songKey() {
     document.getElementById("myStart").innerHTML = "Your song key is " + start_key + " " + major_minor;
     var end_key = [];
     var chords_in_key;
+    
     if (major_minor == "Major") {
         var major_scale_steps = [0, 2, 4, 5, 7, 9, 11, 12];
         for (i = 0; i < major_scale_steps.length - 1; i++) {
             end_key.push(chrom_scale[(major_scale_steps[i]+key_index)%12]);
         }
-        chords_in_key = (end_key[0] + " Major" + "<br>" + end_key[1] + " Minor" + "<br>" + end_key[2] + " Minor" + "<br>" + end_key[3] + " Major" + "<br>" + end_key[4] + " Major" + "<br>" + end_key[5] + " Minor" + "<br>" + end_key[6] + " Diminished");
+        
+        chords_in_key = ["Major", "Minor", "Minor", "Major", "Major", "Minor", "Diminished"]
     }
+    
     else if (major_minor == "Minor") {
         var minor_scale_steps = [0, 2, 3, 5, 7, 8, 10, 12];
         for (i = 0; i < minor_scale_steps.length - 1; i++) {
             end_key.push(chrom_scale[(minor_scale_steps[i]+key_index)%12]);
         }
-        chords_in_key = (end_key[0] + " Minor" + "<br>" + end_key[1] + " Diminished" + "<br>" + end_key[2] + " Major" + "<br>" + end_key[3] + " Minor" + "<br>" + end_key[4] + " Minor" + "<br>" + end_key[5] + " Major" + "<br>" + end_key[6] + " Major");
-        document.getElementById("chords").innerHTML = "The chords in this key are: " + "<br>" + chords_in_key;
+        
+        chords_in_key = ["Minor", "Diminished", "Major", "Minor", "Minor", "Major", "Major"]        
     }
+    
     document.getElementById("text_before_scale").innerHTML = "The notes in the " + start_key + " " + major_minor + " scale are: ";
     var scale = "";
     for (i = 0; i < end_key.length; i++) {
@@ -32,7 +36,17 @@ function songKey() {
         }
     }
     document.getElementById("Scale").innerHTML = scale;
-    document.getElementById("chords").innerHTML = "The chords in this key are: " + "<br>" + chords_in_key;
+    
+    var chords = "";
+    for (i = 0; i < chords_in_key.length; i++) {
+        if (i != chords_in_key.length - 1) {
+            chords += end_key[i] + " " + chords_in_key[i] + "<br>";
+        }
+        else {
+            chords += end_key[i] + " " + chords_in_key[i];
+        }
+    }
+    document.getElementById("chords").innerHTML = "The chords in this key are: " + "<br>" + chords;
 }
 
 function chordConstructor() {
