@@ -25,7 +25,6 @@ function songKey() {
         chords_in_key = ["Minor", "Diminished", "Major", "Minor", "Minor", "Major", "Major"]        
     }
     
-    document.getElementById("text_before_scale").innerHTML = "The notes in the " + start_key + " " + major_minor + " scale are: ";
     var scale = "";
     for (i = 0; i < end_key.length; i++) {
         if (i != end_key.length - 1) {
@@ -35,7 +34,7 @@ function songKey() {
             scale += end_key[i];
         }
     }
-    document.getElementById("Scale").innerHTML = scale;
+    document.getElementById("scale").innerHTML = "The notes in the " + start_key + " " + major_minor + " scale are: " + scale;
     
     var chords = "";
     for (i = 0; i < chords_in_key.length; i++) {
@@ -56,6 +55,7 @@ function chordConstructor() {
     var key_index = chrom_scale.indexOf(start_key);
     var end_key = [];
     var notes_in_chord;
+    
     if (chordType == "Major") {
         var major_scale_steps = [0, 2, 4, 5, 7, 9, 11, 12];
         for (i = 0; i < major_scale_steps.length - 1; i++) {
@@ -71,9 +71,11 @@ function chordConstructor() {
         }
         notes_in_chord = (end_key[0] + ", " + end_key[2] + ", " + end_key[4]);
     }
+    
     else if (chordType == "Diminished") {
         notes_in_chord = (chrom_scale[key_index%12] + ", " + chrom_scale[(key_index + 3)%12] + ", "  + chrom_scale[(key_index + 6)%12]);
     }
+    
     document.getElementById("notes").innerHTML = "The notes in this chord are: " + "<br>" + notes_in_chord;
 }
 
