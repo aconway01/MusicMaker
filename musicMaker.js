@@ -14,9 +14,9 @@ function songKey() {
         chords_in_key = (end_key[0] + " Major" + "<br>" + end_key[1] + " Minor" + "<br>" + end_key[2] + " Minor" + "<br>" + end_key[3] + " Major" + "<br>" + end_key[4] + " Major" + "<br>" + end_key[5] + " Minor" + "<br>" + end_key[6] + " Diminished");
     }
     else if (major_minor == "Minor") {
-        var minor_scale_steps = [chrom_scale.indexOf(start_key), chrom_scale.indexOf(start_key)+ 2, chrom_scale.indexOf(start_key) + 3, chrom_scale.indexOf(start_key) + 5, chrom_scale.indexOf(start_key) + 7, chrom_scale.indexOf(start_key) + 8, chrom_scale.indexOf(start_key) + 10, chrom_scale.indexOf(start_key) + 12];
+        var minor_scale_steps = [0, 2, 3, 5, 7, 8, 10, 12];
         for (i = 0; i < minor_scale_steps.length - 1; i++) {
-            end_key.push(chrom_scale[minor_scale_steps[i]%12]);
+            end_key.push(chrom_scale[(minor_scale_steps[i]+key_index)%12]);
         }
         chords_in_key = (end_key[0] + " Minor" + "<br>" + end_key[1] + " Diminished" + "<br>" + end_key[2] + " Major" + "<br>" + end_key[3] + " Minor" + "<br>" + end_key[4] + " Minor" + "<br>" + end_key[5] + " Major" + "<br>" + end_key[6] + " Major");
         document.getElementById("chords").innerHTML = "The chords in this key are: " + "<br>" + chords_in_key;
@@ -43,17 +43,17 @@ function chordConstructor() {
     var end_key = [];
     var notes_in_chord;
     if (chordType == "Major") {
-        var major_scale_steps = [key_index, key_index + 2, key_index + 4, key_index + 5, key_index + 7, key_index + 9, key_index + 11, key_index + 12];
+        var major_scale_steps = [0, 2, 4, 5, 7, 9, 11, 12];
         for (i = 0; i < major_scale_steps.length - 1; i++) {
-            end_key.push(chrom_scale[major_scale_steps[i]%12]);
+            end_key.push(chrom_scale[(major_scale_steps[i]+key_index)%12]);
         }
         notes_in_chord = (end_key[0] + ", " + end_key[2] + ", "  + end_key[4]);
     }
     
     else if (chordType == "Minor") {
-        var minor_scale_steps = [chrom_scale.indexOf(start_key), chrom_scale.indexOf(start_key)+ 2, chrom_scale.indexOf(start_key) + 3, chrom_scale.indexOf(start_key) + 5, chrom_scale.indexOf(start_key) + 7, chrom_scale.indexOf(start_key) + 8, chrom_scale.indexOf(start_key) + 10, chrom_scale.indexOf(start_key) + 12];
+        var minor_scale_steps = [0, 2, 3, 5, 7, 8, 10, 12];
         for (i = 0; i < minor_scale_steps.length - 1; i++) {
-            end_key.push(chrom_scale[minor_scale_steps[i]%12]);
+            end_key.push(chrom_scale[(minor_scale_steps[i]+key_index)%12]);
         }
         notes_in_chord = (end_key[0] + ", " + end_key[2] + ", " + end_key[4]);
     }
