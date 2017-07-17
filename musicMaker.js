@@ -7,9 +7,9 @@ function songKey() {
     var end_key = [];
     var chords_in_key;
     if (major_minor == "Major") {
-        var major_scale_steps = [key_index, key_index + 2, key_index + 4, key_index + 5, key_index + 7, key_index + 9, key_index + 11, key_index + 12];
+        var major_scale_steps = [0, 2, 4, 5, 7, 9, 11, 12];
         for (i = 0; i < major_scale_steps.length - 1; i++) {
-            end_key.push(chrom_scale[major_scale_steps[i]%12]);
+            end_key.push(chrom_scale[(major_scale_steps[i]+key_index)%12]);
         }
         chords_in_key = (end_key[0] + " Major" + "<br>" + end_key[1] + " Minor" + "<br>" + end_key[2] + " Minor" + "<br>" + end_key[3] + " Major" + "<br>" + end_key[4] + " Major" + "<br>" + end_key[5] + " Minor" + "<br>" + end_key[6] + " Diminished");
     }
