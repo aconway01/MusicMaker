@@ -12,7 +12,6 @@ function songKey() {
         for (i = 0; i < major_scale_steps.length - 1; i++) {
             end_key.push(chrom_scale[(major_scale_steps[i]+key_index)%12]);
         }
-        
         chords_in_key = ["Major", "Minor", "Minor", "Major", "Major", "Minor", "Diminished"]
     }
     
@@ -21,30 +20,24 @@ function songKey() {
         for (i = 0; i < minor_scale_steps.length - 1; i++) {
             end_key.push(chrom_scale[(minor_scale_steps[i]+key_index)%12]);
         }
-        
         chords_in_key = ["Minor", "Diminished", "Major", "Minor", "Minor", "Major", "Major"]        
     }
     
-    var scale = "";
+    var scale = "";    
+    var chords = "";
+    
     for (i = 0; i < end_key.length; i++) {
         if (i != end_key.length - 1) {
             scale += end_key[i] + ", ";
-        }
-        else {
-            scale += end_key[i];
-        }
-    }
-    document.getElementById("scale").innerHTML = "The notes in the " + start_key + " " + major_minor + " scale are: " + scale;
-    
-    var chords = "";
-    for (i = 0; i < chords_in_key.length; i++) {
-        if (i != chords_in_key.length - 1) {
             chords += end_key[i] + " " + chords_in_key[i] + "<br>";
         }
         else {
+            scale += end_key[i];
             chords += end_key[i] + " " + chords_in_key[i];
         }
     }
+    
+    document.getElementById("scale").innerHTML = "The notes in the " + start_key + " " + major_minor + " scale are: " + scale;
     document.getElementById("chords").innerHTML = "The chords in this key are: " + "<br>" + chords;
 }
 
@@ -63,7 +56,6 @@ function chordConstructor() {
         }
         notes_in_chord = (end_key[0] + ", " + end_key[2] + ", "  + end_key[4]);
     }
-    
     else if (chordType == "Minor") {
         var minor_scale_steps = [0, 2, 3, 5, 7, 8, 10, 12];
         for (i = 0; i < minor_scale_steps.length - 1; i++) {
@@ -71,11 +63,9 @@ function chordConstructor() {
         }
         notes_in_chord = (end_key[0] + ", " + end_key[2] + ", " + end_key[4]);
     }
-    
     else if (chordType == "Diminished") {
         notes_in_chord = (chrom_scale[key_index%12] + ", " + chrom_scale[(key_index + 3)%12] + ", "  + chrom_scale[(key_index + 6)%12]);
     }
-    
     document.getElementById("notes").innerHTML = "The notes in this chord are: " + "<br>" + notes_in_chord;
 }
 
